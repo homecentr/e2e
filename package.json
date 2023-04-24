@@ -7,13 +7,17 @@
   "license": "GPL",
   "private": true,
   "scripts": {
-    "run:lab:local": "./tools/run.sh local lab",
-    "run:lab:remote": "./tools/run.sh remote lab",
-    "run:prod:local": "./tools/run.sh local prod",
-    "run:prod:remote": "./tools/run.sh remote prod",
-    "run": "cypress run"
+    "run:lab:local": "./tools/run.sh lab local",
+    "run:lab:remote": "./tools/run.sh lab remote",
+    "run:prod:local": "./tools/run.sh prod local",
+    "run:prod:remote": "./tools/run.sh prod remote",
+    "run": "cypress run",
+    "start:lab": "./node_modules/.bin/env-cmd -f ./environments/lab.local.env cypress open --e2e",
+    "start:prod": "./node_modules/.bin/env-cmd -f ./environments/prod.local.env cypress open --e2e"
   },
   "devDependencies": {
-    "cypress": "^12.10.0"
+    "cross-env": "^7.0.3",
+    "cypress": "^12.10.0",
+    "env-cmd": "^10.1.0"
   }
 }

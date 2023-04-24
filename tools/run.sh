@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-CLIENT_MODE=$1
-ENVIRONMENT=$2
+ENVIRONMENT=$1
+CLIENT_MODE=$2
 ARGS=$3
 
 export CMD="cypress run --browser electron $ARGS"
 
-docker-compose -f ./environments/$1.$2.yml up
+docker-compose --env-file ./environments/$1.$2.env up

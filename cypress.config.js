@@ -7,7 +7,10 @@ module.exports = defineConfig({
     },
     e2e: {
         specPattern: "apps/**/*.cy.js",
-        setupNodeEvents: function (on, config) {
+        setupNodeEvents(on, config) {
+            config.env.domainSuffix = process.env.DOMAIN_SUFFIX
+
+            return config
         }
     }
 })
