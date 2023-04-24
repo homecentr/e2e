@@ -1,0 +1,19 @@
+{
+  "name": "@homecentr/e2e",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:homecentr/e2e.git",
+  "author": "LH <me@lholota.com>",
+  "license": "GPL",
+  "private": true,
+  "scripts": {
+    "run:lab:local": "./tools/run.sh local lab",
+    "run:lab:remote": "./tools/run.sh remote lab",
+    "run:prod:local": "./tools/run.sh local prod",
+    "run:prod:remote": "./tools/run.sh remote prod",
+    "run": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^12.10.0"
+  }
+}

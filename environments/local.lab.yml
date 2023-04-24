@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  cypress:
+    image: cypress/included:latest
+    command: ${CMD}
+    volumes:
+      - "../:/source"
+    working_dir: /source
+    environment:
+      DOMAIN: # TODO: DOMAIN
+    dns:
+    - 10.1.8.128 # TODO: DNS1
+    - 10.1.8.129 # TODO: DNS2
