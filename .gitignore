@@ -1,5 +1,5 @@
-**/screenshots
-**/videos
+tests_output
+screenshots
 
 # Logs
 logs

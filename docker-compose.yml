@@ -1,13 +1,12 @@
-version: '3.9'
+version: '3.7'
+
 services:
-  cypress:
-    image: cypress/included:latest
-    command: ${CMD}
-    volumes:
-      - "./:/source"
-    working_dir: /source
-    environment:
-      DOMAIN_SUFFIX: ${DOMAIN_SUFFIX}
+  chrome:
+    image: selenium/standalone-chrome
+    ports:
+      - 4444:4444
+      - 7900:7900
+    shm_size: 4g
     dns:
-    - ${DNS1}
-    - ${DNS2}
+      - ${DNS1}
+      - ${DNS2}

@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 
-ENVIRONMENT=$1
-CLIENT_MODE=$2
-ARGS=$3
+ENV_NAME=$1
 
-export CMD="cypress run --browser electron $ARGS"
+echo "Loading environment variables..."
 
-docker-compose --env-file ./environments/$1.$2.env up
+set -a
+source ./environments/$ENV_NAME.env
+set +a
+
+echo "Starting webdriver container..."
+docker-compose up --force-recreate --detach --remove-orphans
+
+echo "Running nightwatch..."
+TST_COMMAND="nightwatch ${@:2}"
+eval $TST_COMMAND
+
+# echo "Shutting down webdriver container..."
+# docker-compose down

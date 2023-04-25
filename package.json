@@ -7,17 +7,15 @@
   "license": "GPL",
   "private": true,
   "scripts": {
-    "run:lab:local": "./tools/run.sh lab local",
-    "run:lab:remote": "./tools/run.sh lab remote",
-    "run:prod:local": "./tools/run.sh prod local",
-    "run:prod:remote": "./tools/run.sh prod remote",
-    "run": "cypress run",
-    "start:lab": "./node_modules/.bin/env-cmd -f ./environments/lab.local.env cypress open --e2e",
-    "start:prod": "./node_modules/.bin/env-cmd -f ./environments/prod.local.env cypress open --e2e"
+    "client:local:lab": "env-cmd -f ./environments/local.lab.env docker-compose up --force-recreate --remove-orphans",
+    "client:local:prod": "env-cmd -f ./environments/local.prod.env docker-compose up --force-recreate --remove-orphans",
+    "client:remote": "env-cmd -f ./environments/remote.env docker-compose up --force-recreate --remove-orphans",
+    "test:lab": "nightwatch --skiptags remoteonly -e lab",
+    "test:prod": "nightwatch --skiptags localonly -e prod"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "cypress": "^12.10.0",
-    "env-cmd": "^10.1.0"
+    "env-cmd": "^10.1.0",
+    "nightwatch": "^2.6.20",
+    "sops-wrapper": "^1.0.0"
   }
 }
