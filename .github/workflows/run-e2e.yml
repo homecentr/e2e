@@ -4,6 +4,9 @@ on:
       environment:
         required: true
         type: string
+      client:
+        required: true
+        type: string
       gitref:
         required: false
         type: string
@@ -28,9 +31,9 @@ jobs:
 
       - name: Load variables
         id: vars
-        run: cat ./e2e/environments/local.${{ inputs.environment }}.env >> "$GITHUB_OUTPUT"
+        run: cat ./e2e/environments/${{ inputs.client }}.${{ inputs.environment }}.env >> "$GITHUB_OUTPUT"
 
-  e2e-tests-local:
+  e2e-tests:
     runs-on: [ self-hosted ]
     needs: [ e2e-preparations ]
     services:
@@ -57,7 +60,7 @@ jobs:
         run: cd e2e && yarn
 
       - name: Run tests
-        run: cd e2e && yarn test:local:${{ inputs.environment }}
+        run: cd e2e && yarn test:${{ inputs.client }}:${{ inputs.environment }}
         env:
           WEBDRIVER_HOST: host.docker.internal
           WEBDRIVER_PORT: ${{ job.services.webdriver-chrome.ports[4444] }}

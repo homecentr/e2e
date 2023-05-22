@@ -9,7 +9,8 @@
   "scripts": {
     "client:local:lab": "env-cmd -f ./environments/local.lab.env docker-compose up --force-recreate --remove-orphans",
     "client:local:prod": "env-cmd -f ./environments/local.prod.env docker-compose up --force-recreate --remove-orphans",
-    "client:remote": "env-cmd -f ./environments/remote.env docker-compose up --force-recreate --remove-orphans",
+    "client:remote:lab": "env-cmd -f ./environments/remote.lab.env docker-compose up --force-recreate --remove-orphans",
+    "client:remote:prod": "env-cmd -f ./environments/remote.prod.env docker-compose up --force-recreate --remove-orphans",
     "test:local:lab": "nightwatch --skiptags remoteonly -e lab",
     "test:local:prod": "nightwatch --skiptags remoteonly -e prod",
     "test:remote:lab": "nightwatch --skiptags localonly -e lab",
