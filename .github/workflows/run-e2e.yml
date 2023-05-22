@@ -10,13 +10,15 @@ on:
 jobs:
   e2e-tests:
     runs-on: [ self-hosted ]
-    container:
-      image: node:16
-      options: --user root
     services:
       webdriver-chrome:
         image: selenium/standalone-chrome
+        ports:
+          - 4444
     steps:
+      - name: Test node
+        run: echo ${{ job.services.webdriver-chrome.ports[4444] }}
+
       - name: Check out e2e repository
         uses: actions/checkout@v3.5.2
         with:
