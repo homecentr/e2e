@@ -7,3 +7,5 @@ jobs:
     uses: ./.github/workflows/run-e2e.yml
     with:
       environment: lab
+    secrets:
+      sops_age_key: ${{ secrets.SOPS_AGE_PRIVATE_KEY }}
