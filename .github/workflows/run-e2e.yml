@@ -36,11 +36,11 @@ jobs:
 
       - name: Get hosts ip
         id: host-ip
-        run: "echo \"VALUE=$(dig +short host.docker.internal)\" >> \"$GITHUB_OUTPUT\""
+        run: "echo \"VALUE=$(dig +short host.docker.internal)\" >> $GITHUB_OUTPUT"
 
       - name: Generate vnc password
         id: vnc-password
-        run: "echo \"VALUE=$(cat /proc/sys/kernel/random/uuid | sed 's/[-]//g' | head -c 20 && echo)\" >> \"$GITHUB_OUTPUT\""
+        run: "echo \"VALUE=$(cat /proc/sys/kernel/random/uuid | sed 's/[-]//g' | head -c 20)\" >> $GITHUB_OUTPUT"
 
       - name: Debug 1
         run: "echo ${{ steps.host-ip.outputs.VALUE }}"
