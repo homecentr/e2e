@@ -34,19 +34,9 @@ jobs:
         id: vars
         run: cat ./e2e/environments/local.${{ inputs.environment }}.env >> "$GITHUB_OUTPUT"
 
-      - name: Get hosts ip
-        id: host-ip
-        run: echo "VALUE=$(dig +short host.docker.internal)" >> "$GITHUB_OUTPUT"
-
       - name: Generate vnc password
         id: vnc-password
         run: echo "VALUE=$(cat /proc/sys/kernel/random/uuid | sed 's/[-]//g' | head -c 20)" >> "$GITHUB_OUTPUT"
-
-      - name: Debug 1.1
-        run: echo "VALUE=$(cat /proc/sys/kernel/random/uuid | sed 's/[-]//g' | head -c 20)"
-
-      - name: Debug 2
-        run: "echo ${{ steps.vnc-password.outputs.VALUE }}"
 
   e2e-tests-local:
     runs-on: [ self-hosted ]
@@ -61,8 +51,11 @@ jobs:
           SE_VNC_PASSWORD: "${{ needs.e2e-preparations.outputs.vnc-password }}"
         options: --shm-size=2g --dns=${{ needs.e2e-preparations.outputs.dns1 }} --dns=${{ needs.e2e-preparations.outputs.dns2 }}
     steps:
+      - name: Dummy
+        run: "echo \"IP=$HOST_IP\""
+
       - name: Print debug link
-        run: echo "::debug::http://$HOST_IP:${{ job.services.webdriver-chrome.ports[7900] }}/?password=${{ needs.e2e-preparations.outputs.vnc-password }}"
+        run: echo "http://$HOST_IP:${{ job.services.webdriver-chrome.ports[7900] }}/?password=${{ needs.e2e-preparations.outputs.vnc-password }}"
 
       - name: Check out e2e repository
         uses: actions/checkout@v3.5.2
