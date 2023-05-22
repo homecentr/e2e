@@ -4,15 +4,13 @@ on:
       environment:
         required: true
         type: string
-      branch:
+      gitref:
         required: false
         type: string
-        default: feat/v1 # TODO: Change to master
+        default: master
     secrets:
       sops_age_key:
         required: true
-    
-# TODO: Set token perms
 
 jobs:
   e2e-preparations:
@@ -25,7 +23,7 @@ jobs:
         uses: actions/checkout@v3.5.2
         with:
           repository: homecentr/e2e
-          ref: refs/heads/${{ inputs.branch }}
+          ref: refs/heads/${{ inputs.gitref }}
           path: e2e
 
       - name: Load variables
@@ -52,7 +50,7 @@ jobs:
         uses: actions/checkout@v3.5.2
         with:
           repository: homecentr/e2e
-          ref: refs/heads/${{ inputs.branch }}
+          ref: refs/heads/${{ inputs.gitref }}
           path: e2e
 
       - name: Install dependencies
@@ -65,5 +63,3 @@ jobs:
           WEBDRIVER_PORT: ${{ job.services.webdriver-chrome.ports[4444] }}
           SOPS_AGE_KEY: ${{ secrets.sops_age_key }}
           SCREENSHOTS_ENABLED: "false"
-
-  # TODO: Run remote tests
