@@ -40,6 +40,7 @@ jobs:
         image: selenium/standalone-chrome
         ports:
           - 4444
+          - 7900
         options: --dns=${{ needs.load-config.outputs.DNS1 }} --dns=${{ needs.load-config.outputs.DNS2 }}
     steps:
       - name: Check out e2e repository
@@ -49,11 +50,11 @@ jobs:
           ref: refs/heads/${{ inputs.branch }}
           path: e2e
 
-      - name: Pause
-        run: sleep infinity
-
       - name: Install dependencies
         run: cd e2e && yarn
+
+      - name: Wait
+        run: sleep 60
 
       - name: Run tests
         run: cd e2e && yarn test:local:${{ inputs.environment }}
