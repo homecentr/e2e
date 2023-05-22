@@ -3,7 +3,7 @@ describe('Argo CD should', () => {
     browser.end()
   })
 
-  it('Allow admins to use the app', (browser) => {
+  it('Load main screen after signing in as admin', (browser) => {
     browser
       .subdomain('argocd')
       .click('a > button') // Redirects to AAD
@@ -17,6 +17,5 @@ describe('Argo CD should', () => {
       .click('a > button') // Redirects to AAD
       .signInAsNonAdmin()
       .assert.isAadPermissionRejectedPage()
-      //.textContains("#exceptionMessageContainer", "AADSTS50105")
   });
 });

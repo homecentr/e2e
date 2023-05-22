@@ -1,6 +1,5 @@
 describe('Kubernetes dashboard should', () => {
   afterEach((browser) => {
-    console.log("MyProp: " + browser.globals.myProp)
     browser.end()
   })
 
@@ -11,5 +10,12 @@ describe('Kubernetes dashboard should', () => {
       .waitForElementVisible("css selector", "a[href^='#/about']")
       .click("a[href^='#/about']")
       .assert.textContains("body", "Dashboard")
+  });
+
+  it('Not allow non-admins to use the app', (browser) => {
+    browser
+      .subdomain('k8s')
+      .signInAsNonAdmin()
+      .assert.isAadPermissionRejectedPage()
   });
 });

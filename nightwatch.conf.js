@@ -12,12 +12,12 @@ module.exports = {
   },
 
   test_settings: {
-    // Globals as variables !!!
     default: {
       globals: {
         waitForConditionTimeout: 30000,
         waitForConditionPollInterval: 500
       },
+      persist_globals: true,
       screenshots: {
         enabled: true,
         on_failure: true,
@@ -28,7 +28,8 @@ module.exports = {
       desiredCapabilities: {
         browserName: "chrome",
         javascriptEnabled: true,
-        acceptSslCerts: true
+        acceptSslCerts: true,
+        acceptInsecureCerts: true
       }
     },
     "lab": {

@@ -16,7 +16,5 @@ module.exports = {
           browser.click("input[type=button][value=No]")
         }
       })
-      
-      // .click("input[type=button][value=No]")
   }
 }

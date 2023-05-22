@@ -1,0 +1,31 @@
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    
+jobs:
+  e2e-tests:
+    runs-on: [ self-hosted ]
+    container: node:18
+    services:
+      webdriver-chrome:
+        image: selenium/standalone-chrome
+    steps:
+      - name: Check out e2e repisitory
+        uses: actions/checkout@master
+        with:
+          name: homecentr/e2e
+          ref: refs/heads/master
+          path: e2e
+
+      - name: Install dependencies
+        run: cd e2e && yarn
+
+      - name: Ping webdriver
+        run: ping webdriver-chrome
+
+      # TODO: Start a chrome driver container
+      # TODO: Run E2E
+      # TODO: Kill the chrome driver container (runs always !!!)

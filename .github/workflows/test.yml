@@ -1,0 +1,8 @@
+on:
+  push:
+
+jobs:
+  e2e:
+    uses: ./.github/workflows/run-e2e.yml
+    with:
+      environment: lab
