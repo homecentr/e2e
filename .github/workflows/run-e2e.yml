@@ -17,6 +17,7 @@ jobs:
 
   e2e-tests:
     runs-on: [ self-hosted ]
+    needs: [ load-config ]
     services:
       webdriver-chrome:
         image: selenium/standalone-chrome # TODO: We need to configure the DNS !!!
