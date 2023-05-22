@@ -16,7 +16,7 @@ jobs:
       - name: Check out e2e repisitory
         uses: actions/checkout@master
         with:
-          name: homecentr/e2e
+          repository: homecentr/e2e
           ref: refs/heads/master
           path: e2e
 

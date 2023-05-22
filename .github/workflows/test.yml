@@ -1,6 +1,7 @@
 on:
   push:
 
+# TODO: Change this to CI, any changes to E2E tests should pass on a working env.
 jobs:
   e2e:
     uses: ./.github/workflows/run-e2e.yml
