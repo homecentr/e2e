@@ -19,7 +19,7 @@ module.exports = {
       },
       persist_globals: true,
       screenshots: {
-        enabled: true,
+        enabled: "${SCREENSHOTS_ENABLED}",
         on_failure: true,
         path: "screenshots"
       },

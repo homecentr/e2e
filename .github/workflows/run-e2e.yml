@@ -58,5 +58,6 @@ jobs:
           WEBDRIVER_HOST: host.docker.internal
           WEBDRIVER_PORT: ${{ job.services.webdriver-chrome.ports[4444] }}
           SOPS_AGE_KEY: ${{ secrets.sops_age_key }}
+          SCREENSHOTS_ENABLED: "false"
 
   # TODO: Run remote tests
