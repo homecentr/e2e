@@ -54,7 +54,7 @@ jobs:
         run: "echo ${{ needs.e2e-preparations.outputs.vnc-password }}"
 
       - name: Print debug link
-        run: echo "http://$HOST_IP:${{ job.services.webdriver-chrome.ports[7900] }}/password=${{ needs.e2e-preparations.outputs.vnc-password }}"
+        run: echo "http://$HOST_IP:${{ job.services.webdriver-chrome.ports[7900] }}/a=${{ needs.e2e-preparations.outputs.vnc-password }}"
 
       - name: Check out e2e repository
         uses: actions/checkout@v3.5.2
