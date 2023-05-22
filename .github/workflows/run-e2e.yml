@@ -44,7 +44,7 @@ jobs:
 
   e2e-tests-local:
     runs-on: [ self-hosted ]
-    needs: [ load-config ]
+    needs: [ e2e-preparations ]
     services:
       webdriver-chrome:
         image: selenium/standalone-chrome
