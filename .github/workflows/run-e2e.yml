@@ -10,6 +10,7 @@ jobs:
     runs-on: [ self-hosted ]
     container:
       image: node:16-bullseye
+      options: --user root
     services:
       webdriver-chrome:
         image: selenium/standalone-chrome
