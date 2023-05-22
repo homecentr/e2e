@@ -20,7 +20,6 @@ jobs:
     outputs:
       dns1: ${{ steps.vars.outputs.DNS1 }}
       dns2: ${{ steps.vars.outputs.DNS2 }}
-      host-ip: ${{ steps.host-ip.outputs.VALUE }}
       vnc-password: ${{ steps.vnc-password.outputs.VALUE }}
     steps:
       - name: Check out e2e repository
@@ -52,7 +51,7 @@ jobs:
         options: --shm-size=2g --dns=${{ needs.e2e-preparations.outputs.dns1 }} --dns=${{ needs.e2e-preparations.outputs.dns2 }}
     steps:
       - name: Dummy
-        run: "echo \"IP=$HOST_IP\""
+        run: "echo ${{ needs.e2e-preparations.outputs.vnc-password }}"
 
       - name: Print debug link
         run: echo "http://$HOST_IP:${{ job.services.webdriver-chrome.ports[7900] }}/password=${{ needs.e2e-preparations.outputs.vnc-password }}"
