@@ -50,11 +50,8 @@ jobs:
           SE_VNC_PASSWORD: "${{ needs.e2e-preparations.outputs.vnc-password }}"
         options: --shm-size=2g --dns=${{ needs.e2e-preparations.outputs.dns1 }} --dns=${{ needs.e2e-preparations.outputs.dns2 }}
     steps:
-      - name: Dummy
-        run: "echo ${{ needs.e2e-preparations.outputs.vnc-password }}"
-
       - name: Print debug link
-        run: echo "http://$HOST_IP:${{ job.services.webdriver-chrome.ports[7900] }}/a=${{ needs.e2e-preparations.outputs.vnc-password }}"
+        run: QUERY_PARAM="password" echo "http://$HOST_IP:${{ job.services.webdriver-chrome.ports[7900] }}/$QUERY_PARAM=${{ needs.e2e-preparations.outputs.vnc-password }}"
 
       - name: Check out e2e repository
         uses: actions/checkout@v3.5.2
