@@ -62,7 +62,7 @@ jobs:
         options: --shm-size=2g --dns=${{ needs.e2e-preparations.outputs.dns1 }} --dns=${{ needs.e2e-preparations.outputs.dns2 }}
     steps:
       - name: Print debug link
-        run: echo http://${{ env.HOST_IP }}:${{ job.services.webdriver-chrome.ports[7900] }}/?password=${{ needs.e2e-preparations.outputs.vnc-password }}
+        run: echo "::debug::http://$HOST_IP:${{ job.services.webdriver-chrome.ports[7900] }}/?password=${{ needs.e2e-preparations.outputs.vnc-password }}"
 
       - name: Check out e2e repository
         uses: actions/checkout@v3.5.2
