@@ -8,16 +8,28 @@ on:
 # TODO: Set token perms
 
 jobs:
+  load-config:
+    runs-on: [ self-hosted ]
+    steps:
+      - name: Load variables
+        id: vars
+        run: cat ./environments/local.${{ inputs.environment }}.env >> "$GITHUB_OUTPUT"
+
   e2e-tests:
     runs-on: [ self-hosted ]
     services:
       webdriver-chrome:
-        image: selenium/standalone-chrome
+        image: selenium/standalone-chrome # TODO: We need to configure the DNS !!!
         ports:
           - 4444
+        # options: --dns ${{ steps.primary_dns. }}
+        # options: DNS HOW
     steps:
-      - name: Test node
-        run: echo ${{ job.services.webdriver-chrome.ports[4444] }}
+      - name: Debug 1
+        run: echo ${{ steps.vars.outputs.DNS1 }}
+
+      - name: Debug 2
+        run: echo ${{ steps.vars.outputs.DNS2 }}
 
       - name: Check out e2e repository
         uses: actions/checkout@v3.5.2
@@ -29,9 +41,12 @@ jobs:
       - name: Install dependencies
         run: cd e2e && yarn
 
-      - name: Ping webdriver
-        run: ping webdriver-chrome
+      - name: Run tests
+        run: cd e2e && yarn test:${{ inputs.environment }}
+        env:
+          WEBDRIVER_HOST: host.docker.internal
+          WEBDRIVER_PORT: ${{ job.services.webdriver-chrome.ports[4444] }}
 
-      # TODO: Start a chrome driver container
+
       # TODO: Run E2E
       # TODO: Kill the chrome driver container (runs always !!!)

@@ -23,8 +23,8 @@ module.exports = {
         on_failure: true,
         path: "screenshots"
       },
-      selenium_port: 4444,
-      selenium_host: "127.0.0.1",
+      selenium_port: "${WEBDRIVER_PORT}",
+      selenium_host: "${WEBDRIVER_HOST}",
       desiredCapabilities: {
         browserName: "chrome",
         javascriptEnabled: true,
