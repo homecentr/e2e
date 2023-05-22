@@ -26,6 +26,19 @@ jobs:
         id: vars
         run: cat ./e2e/environments/local.${{ inputs.environment }}.env >> "$GITHUB_OUTPUT"
 
+      - name: Load variables
+        id: vars2
+        run: grep DNS1 ./e2e/environments/local.${{ inputs.environment }}.env >> "$GITHUB_OUTPUT"
+
+      - name: Debug 1
+        run: echo ${{ steps.vars.outputs.DNS1 }}
+
+      - name: Debug 2
+        run: echo ${{ steps.vars.outputs.DNS2 }}
+
+      - name: Debug 3
+        run: echo ${{ steps.vars2.outputs.DNS1 }}
+
   e2e-tests:
     runs-on: [ self-hosted ]
     needs: [ load-config ]
@@ -42,6 +55,9 @@ jobs:
 
       - name: Debug 2
         run: echo ${{ steps.vars.outputs.DNS2 }}
+
+      - name: Debug 3
+        run: echo ${{ steps.vars2.outputs.DNS1 }}
 
       - name: Check out e2e repository
         uses: actions/checkout@v3.5.2
