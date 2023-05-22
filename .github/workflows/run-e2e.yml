@@ -45,8 +45,14 @@ jobs:
       - name: Debug 1
         run: "echo ${{ steps.host-ip.outputs.VALUE }}"
 
+      - name: Debug 1.1
+        run: echo "VALUE=$(cat /proc/sys/kernel/random/uuid | sed 's/[-]//g' | head -c 20)"
+
       - name: Debug 2
         run: "echo ${{ steps.vns-password.outputs.VALUE }}"
+
+      - name: Debug 2.1
+        run: echo "VALUE=$(dig +short host.docker.internal)"
 
   e2e-tests-local:
     runs-on: [ self-hosted ]
