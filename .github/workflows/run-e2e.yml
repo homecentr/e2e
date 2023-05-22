@@ -37,7 +37,7 @@ jobs:
         image: selenium/standalone-chrome
         ports:
           - 4444
-        options: --dns='${{ needs.load-config.outputs.DNS1 }},${{ needs.load-config.outputs.DNS2 }}'
+        options: --dns=${{ needs.load-config.outputs.DNS1 }} --dns=${{ needs.load-config.outputs.DNS2 }}
     steps:
       - name: Check out e2e repository
         uses: actions/checkout@v3.5.2
