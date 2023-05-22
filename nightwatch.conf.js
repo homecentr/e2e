@@ -20,7 +20,7 @@ module.exports = {
       persist_globals: true,
       screenshots: {
         enabled: "${SCREENSHOTS_ENABLED}",
-        on_failure: true,
+        on_failure: "${SCREENSHOTS_ENABLED}",
         path: "screenshots"
       },
       selenium_port: "${WEBDRIVER_PORT}",
