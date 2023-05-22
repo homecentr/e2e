@@ -9,12 +9,12 @@ jobs:
   e2e-tests:
     runs-on: [ self-hosted ]
     container:
-      image: node:18-bullseye
+      image: node:16-bullseye
     services:
       webdriver-chrome:
         image: selenium/standalone-chrome
     steps:
-      - name: Check out e2e repisitory
+      - name: Check out e2e repository
         uses: actions/checkout@master
         with:
           repository: homecentr/e2e
