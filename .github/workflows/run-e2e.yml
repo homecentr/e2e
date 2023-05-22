@@ -65,6 +65,9 @@ jobs:
           ref: refs/heads/${{ inputs.branch }}
           path: e2e
 
+      - name: Wait
+        run: sleep 3600
+
       - name: Install dependencies
         run: cd e2e && yarn
 
