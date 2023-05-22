@@ -20,8 +20,8 @@ jobs:
     outputs:
       dns1: ${{ steps.vars.outputs.DNS1 }}
       dns2: ${{ steps.vars.outputs.DNS2 }}
-      host_ip: ${{ steps.host-ip.outputs.VALUE }}
-      vnc_password: ${{ steps.vnc-password.outputs.VALUE }}
+      host-ip: ${{ steps.host-ip.outputs.VALUE }}
+      vnc-password: ${{ steps.vnc-password.outputs.VALUE }}
     steps:
       - name: Check out e2e repository
         uses: actions/checkout@v3.5.2
@@ -42,17 +42,11 @@ jobs:
         id: vnc-password
         run: echo "VALUE=$(cat /proc/sys/kernel/random/uuid | sed 's/[-]//g' | head -c 20)" >> "$GITHUB_OUTPUT"
 
-      - name: Debug 1
-        run: "echo ${{ steps.host-ip.outputs.VALUE }}"
-
       - name: Debug 1.1
         run: echo "VALUE=$(cat /proc/sys/kernel/random/uuid | sed 's/[-]//g' | head -c 20)"
 
       - name: Debug 2
-        run: "echo ${{ steps.vns-password.outputs.VALUE }}"
-
-      - name: Debug 2.1
-        run: echo "VALUE=$(dig +short host.docker.internal)"
+        run: "echo ${{ steps.vnc-password.outputs.VALUE }}"
 
   e2e-tests-local:
     runs-on: [ self-hosted ]
@@ -64,11 +58,11 @@ jobs:
           - 4444
           - 7900
         env:
-          SE_VNC_PASSWORD: ${{ needs.e2e-preparations.outputs.vnc-password }}
+          SE_VNC_PASSWORD: "${{ needs.e2e-preparations.outputs.vnc-password }}"
         options: --shm-size=2g --dns=${{ needs.e2e-preparations.outputs.dns1 }} --dns=${{ needs.e2e-preparations.outputs.dns2 }}
     steps:
       - name: Print debug link
-        run: echo http://${{ needs.e2e-preparations.outputs.host_ip }}:${{ job.services.webdriver-chrome.ports[7900] }}/?password=${{ needs.e2e-preparations.outputs.vnc_password }}
+        run: echo http://${{ env.HOST_IP }}:${{ job.services.webdriver-chrome.ports[7900] }}/?password=${{ needs.e2e-preparations.outputs.vnc-password }}
 
       - name: Check out e2e repository
         uses: actions/checkout@v3.5.2
