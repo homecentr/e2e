@@ -49,6 +49,9 @@ jobs:
           ref: refs/heads/${{ inputs.branch }}
           path: e2e
 
+      - name: Pause
+        run: sleep infinity
+
       - name: Install dependencies
         run: cd e2e && yarn
 
