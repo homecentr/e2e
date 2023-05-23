@@ -7,6 +7,8 @@ services:
       - 4444:4444
       - 7900:7900
     shm_size: 4g
+    environment:
+      VNC_NO_PASSWORD: 1
     dns:
       - ${DNS1}
       - ${DNS2}

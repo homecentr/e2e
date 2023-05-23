@@ -1,5 +1,14 @@
-const { reusable } = require("./isAadErrorPage")
+const isAadErrorPage = require("./isAadErrorPage")
 
-exports.assertion = function () {
-  reusable(this, "AADSTS50105")
+const reusable = function (context) {
+  isAadErrorPage.reusable("AADSTS50105", context)
+}
+
+const assertion = function () {
+  reusable(this)
+};
+
+module.exports = {
+  reusable,
+  assertion
 }

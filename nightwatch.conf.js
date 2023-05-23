@@ -32,16 +32,32 @@ module.exports = {
         acceptInsecureCerts: true
       }
     },
-    "lab": {
+    "local:lab": {
       globals: {
         domainSuffix: "-lab.homecentr.one",
-        secretsFile: "secrets.lab.yml"
+        secretsFile: "secrets.lab.yml",
+        isRemote: false
       }
     },
-    "prod": {
+    "remote:lab": {
       globals: {
         domainSuffix: "-lab.homecentr.one",
-        secretsFile: "secrets.prod.yml"
+        secretsFile: "secrets.lab.yml",
+        isRemote: true
+      }
+    },
+    "local:prod": {
+      globals: {
+        domainSuffix: ".homecentr.one",
+        secretsFile: "secrets.prod.yml",
+        isRemote: false
+      }
+    },
+    "remote:prod": {
+      globals: {
+        domainSuffix: ".homecentr.one",
+        secretsFile: "secrets.prod.yml",
+        isRemote: true
       }
     }
   }

@@ -10,7 +10,7 @@ on:
       gitref:
         required: false
         type: string
-        default: master
+        default: refs/heads/master
     secrets:
       sops_age_key:
         required: true
