@@ -1,7 +1,7 @@
 const isAadErrorPage = require("./isAadErrorPage")
 
 const reusable = function (context) {
-  isAadErrorPage.reusable("AADSTS50105", context)
+  isAadErrorPage.reusable(context, "AADSTS50105")
 }
 
 const assertion = function () {
