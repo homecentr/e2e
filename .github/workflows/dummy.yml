@@ -1,0 +1,20 @@
+name: Dummy
+
+on:
+  push:
+
+jobs:
+  dummy:
+    runs-on: [ self-hosted, dummy ]
+    services:
+      webdriver-chrome:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444
+          - 7900
+        env:
+          VNC_NO_PASSWORD: 1
+        options: --shm-size=2g --dns=${{ needs.e2e-preparations.outputs.dns1 }} --dns=${{ needs.e2e-preparations.outputs.dns2 }}
+    steps:
+      - name: Print debug link
+        run: echo Hello
