@@ -1,3 +1,6 @@
+tests_output
+screenshots
+
 # Logs
 logs
 *.log

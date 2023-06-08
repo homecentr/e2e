@@ -1,0 +1,24 @@
+{
+  "name": "@homecentr/e2e",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:homecentr/e2e.git",
+  "author": "LH <me@lholota.com>",
+  "license": "GPL",
+  "private": true,
+  "scripts": {
+    "client:local:lab": "env-cmd -f ./environments/local.lab.env docker-compose up --force-recreate --remove-orphans",
+    "client:local:prod": "env-cmd -f ./environments/local.prod.env docker-compose up --force-recreate --remove-orphans",
+    "client:remote:lab": "env-cmd -f ./environments/remote.lab.env docker-compose up --force-recreate --remove-orphans",
+    "client:remote:prod": "env-cmd -f ./environments/remote.prod.env docker-compose up --force-recreate --remove-orphans",
+    "test:local:lab": "nightwatch --skiptags remoteonly -e local:lab",
+    "test:local:prod": "nightwatch --skiptags remoteonly -e local:prod",
+    "test:remote:lab": "nightwatch --skiptags localonly -e remote:lab",
+    "test:remove:prod": "nightwatch --skiptags localonly -e remote:prod"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nightwatch": "^2.6.20",
+    "sops-wrapper": "^1.0.0"
+  }
+}
