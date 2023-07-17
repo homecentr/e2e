@@ -14,7 +14,7 @@
     "test:local:lab": "nightwatch --skiptags remoteonly -e local:lab",
     "test:local:prod": "nightwatch --skiptags remoteonly -e local:prod",
     "test:remote:lab": "nightwatch --skiptags localonly -e remote:lab",
-    "test:remove:prod": "nightwatch --skiptags localonly -e remote:prod"
+    "test:remote:prod": "nightwatch --skiptags localonly -e remote:prod"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
