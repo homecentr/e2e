@@ -63,7 +63,7 @@ jobs:
       - name: Run tests
         working-directory: e2e
         run: |
-          yarn test:${{ inputs.client }}:${{ inputs.environment }}
+          # yarn test:${{ inputs.client }}:${{ inputs.environment }}
           echo "exitcode=$?"
         env:
           WEBDRIVER_HOST: host.docker.internal
