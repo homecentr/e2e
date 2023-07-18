@@ -11,8 +11,9 @@ module.exports = {
       .click("input[value='Sign in']")
 
       .element("css selector", "input[type=button][value=No]", result => {
-        console.log("Debug: " + result.status)
-        
+        console.log("Debug")
+        console.log(result.status)
+
         if(result.status != -1) {
           // Sign in succeeded and AAD showed the "Stay signed in?" screen
           browser.click("input[type=button][value=No]")
