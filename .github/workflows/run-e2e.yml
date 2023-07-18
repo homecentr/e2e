@@ -60,7 +60,7 @@ jobs:
         run: cd e2e && yarn
 
       - name: Run tests
-        run: cd e2e && yarn test:${{ inputs.client }}:${{ inputs.environment }}
+        run: "cd e2e && yarn test:${{ inputs.client }}:${{ inputs.environment }} && echo Last exit code: $?"
         env:
           WEBDRIVER_HOST: host.docker.internal
           WEBDRIVER_PORT: ${{ job.services.webdriver-chrome.ports[4444] }}
