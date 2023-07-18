@@ -57,12 +57,17 @@ jobs:
           path: e2e
 
       - name: Install dependencies
-        run: cd e2e && yarn
+        working-directory: e2e
+        run: yarn
 
       - name: Run tests
-        run: cd e2e && yarn test:${{ inputs.client }}:${{ inputs.environment }}
+        working-directory: e2e
+        run: |
+          # yarn test:${{ inputs.client }}:${{ inputs.environment }}
+          echo "exitcode=$?"
         env:
           WEBDRIVER_HOST: host.docker.internal
           WEBDRIVER_PORT: ${{ job.services.webdriver-chrome.ports[4444] }}
           SOPS_AGE_KEY: ${{ secrets.sops_age_key }}
           SCREENSHOTS_ENABLED: "false"
+

@@ -3,7 +3,7 @@ describe('Kubernetes dashboard should', () => {
     browser.end()
   })
 
-  it('Load main screen after sign in', async (browser) => {
+  it('Load main screen after sign in', (browser) => {
     browser
       .subdomain('k8s')
       .signInAsAdmin()
