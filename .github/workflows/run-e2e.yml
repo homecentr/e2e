@@ -62,17 +62,10 @@ jobs:
 
       - name: Run tests
         working-directory: e2e
-        run: yarn test:${{ inputs.client }}:${{ inputs.environment }} --reporter=json 
+        run: yarn test:${{ inputs.client }}:${{ inputs.environment }}
         env:
           WEBDRIVER_HOST: host.docker.internal
           WEBDRIVER_PORT: ${{ job.services.webdriver-chrome.ports[4444] }}
           SOPS_AGE_KEY: ${{ secrets.sops_age_key }}
           SCREENSHOTS_ENABLED: "false"
 
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: success() || failure()
-        with:
-          name: "E2E tests (${{ inputs.client }}:${{ inputs.environment }})"
-          path: test_outputs/*.json
-          reporter: mocha-json
