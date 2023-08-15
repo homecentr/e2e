@@ -36,7 +36,8 @@ module.exports = {
       globals: {
         domainSuffix: "-lab.homecentr.one",
         secretsFile: "secrets.lab.yml",
-        isRemote: false
+        isRemote: false,
+        smtp_relay_host: "10.1.8.130"
       }
     },
     "remote:lab": {
@@ -50,7 +51,8 @@ module.exports = {
       globals: {
         domainSuffix: ".homecentr.one",
         secretsFile: "secrets.prod.yml",
-        isRemote: false
+        isRemote: false,
+        smtp_relay_host: "10.1.2.130"
       }
     },
     "remote:prod": {
