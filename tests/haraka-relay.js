@@ -7,14 +7,17 @@ describe('Mailrelay when accessed locally should', async () => {
     const transport = nodemailer.createTransport({
       host: this.globals.smtp_relay_host,
       port: 25,
-      secure: true
+      auth: {
+        user: this.globals.smtp_relay_username,
+        pass: this.globals.smtp_relay_password
+      },
     });
 
     await transport.sendMail({
-      from: "TBA: From SOPS",
-      to: "TBA: From SOPS",
+      from: this.globals.smtp_relay_sender,
+      to: this.globals.smtp_relay_recipient,
       subject: "E2E test ✔",
-      text: "Hello, world!" // plain text body
+      text: "Hello, world!"
     });
   });
 });
