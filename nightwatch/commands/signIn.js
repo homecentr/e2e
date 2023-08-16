@@ -1,7 +1,5 @@
 module.exports = {
   command: function (email, password) {
-    const browser = this
-
     return this
       // E-mail
       .setValue("input[type=email]", email)
@@ -24,17 +22,5 @@ module.exports = {
             this.click("input[type=button][value=No]")
           }
         })
-
-    // .element("css selector", "input[type=button][value=No]",
-    //   (result, another) => {
-    //     console.log("Debug")
-    //     console.log(result)
-    //     console.log(another)
-
-    //     if (result.status != -1) {
-    //       console.log("Found")
-    //       //browser.click("input[type=button][value=No]")
-    //     }
-    //   })
   }
 }

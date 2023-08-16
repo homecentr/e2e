@@ -19,9 +19,7 @@
   "devDependencies": {
     "env-cmd": "^10.1.0",
     "nightwatch": "^3.1.2",
-    "sops-wrapper": "^1.0.0"
-  },
-  "dependencies": {
+    "sops-wrapper": "^1.0.0",
     "nodemailer": "^6.9.4"
   }
 }
