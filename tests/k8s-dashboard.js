@@ -16,6 +16,9 @@ describe('Kubernetes dashboard should', () => {
     browser
       .subdomain('k8s')
       .signInAsNonAdmin()
-      .assert.isPermissionRejectedPage()
+      .assert.isCloudflareOrPomeriumPermissionRejectedPage()
+
+      // Role == alert
+      // 403 Forbidden
   });
 });
