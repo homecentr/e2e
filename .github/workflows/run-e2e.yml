@@ -23,7 +23,7 @@ jobs:
       dns2: ${{ steps.vars.outputs.DNS2 }}
     steps:
       - name: Check out e2e repository
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3.6.0
         with:
           repository: homecentr/e2e
           ref: ${{ inputs.gitref }}
@@ -50,7 +50,7 @@ jobs:
         run: echo "::info::http://$HOST_IP:${{ job.services.webdriver-chrome.ports[7900] }}"
 
       - name: Check out e2e repository
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3.6.0
         with:
           repository: homecentr/e2e
           ref: ${{ inputs.gitref }}
