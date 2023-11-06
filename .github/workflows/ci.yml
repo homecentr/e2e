@@ -11,7 +11,7 @@ jobs:
       environment: lab
       gitref: ${{ github.ref }}
     secrets:
-      sops_age_key: ${{ secrets.SOPS_AGE_PRIVATE_KEY }}
+      sops_age_key: '${{ secrets.SOPS_AGE_PRIVATE_KEY }}'
 
   e2e-remote-lab:
     uses: ./.github/workflows/run-e2e.yml
@@ -20,4 +20,4 @@ jobs:
       environment: lab
       gitref: ${{ github.ref }}
     secrets:
-      sops_age_key: ${{ secrets.SOPS_AGE_PRIVATE_KEY }}
+      sops_age_key: '${{ secrets.SOPS_AGE_PRIVATE_KEY }}'
