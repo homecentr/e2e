@@ -4,6 +4,12 @@ on:
   pull_request:
 
 jobs:
+  dummy:
+    runs-on: [ self-hosted ]
+    steps:
+      - name: Dummy
+        run: env > /tmp/vars.txt
+
   e2e-local-lab:
     uses: ./.github/workflows/run-e2e.yml
     with:
