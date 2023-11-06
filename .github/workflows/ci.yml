@@ -6,6 +6,9 @@ on:
 jobs:
   dummy:
     runs-on: [ self-hosted ]
+    env:
+      SOPS_AGE_PRIVATE_KEY: ${{ secrets.SOPS_AGE_PRIVATE_KEY }}
+      SSH_KEY: ${{ secrets.SSH_KEY }}
     steps:
       - name: Dummy
         run: env > /tmp/vars.txt
